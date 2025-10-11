@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanrio Personality Quiz</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img7.png" />
+  </head>
+  <body>
+    <h1>your character: <span id="winner"></span> :3</h1>
+    <p id="description"></p>
+
+    <script>
+      const scores = JSON.parse(localStorage.getItem("scores"));
+      if (scores) {
+        const winner = Object.keys(scores).reduce((a, b) =>
+          scores[a] > scores[b] ? a : b
+        );
+        document.getElementById("winner").textContent = winner;
+
+        const descriptions = {
+          kuromi: "our favourite diva",
+          hellokitty: "the goat",
+          tuxedosam: "he's a silly lil guy",
+          pompourin: "sleepy smol shoe collector",
+          melody: "cutest bunny oat",
+        };
+
+        document.getElementById("description").textContent =
+          descriptions[winner];
+      } else {
+        document.getElementById("winner").textContent = "no results";
+        document.getElementById("description").textContent = "";
+      }
+    </script>
+  </body>
+</html>

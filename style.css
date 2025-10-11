@@ -26,6 +26,11 @@ button {
   color: rgb(159, 198, 41);
   border: none;
   padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 
 a {
@@ -45,7 +50,7 @@ a {
   padding: 20px;
 }
 
-.answer {
+.incrementBtn {
   margin: 10px;
 }
 
