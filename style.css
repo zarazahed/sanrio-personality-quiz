@@ -1,33 +1,55 @@
 * {
-    font-family: "Pixelify Sans";
-    text-align: center;
+  font-family: "Pixelify Sans";
+  text-align: center;
 }
 
 body {
-    margin: 50px;
-    background-color: rgb(159, 198, 41);
+  margin: 50px;
+  background-color: rgb(159, 198, 41);
 }
 
 h1 {
-    color:rgb(255, 221, 70);
+  color: rgb(255, 221, 70);
 }
 
 h6 {
-    color:rgb(229, 229, 125);
-    font-size: 15px;
+  color: rgb(229, 229, 125);
+  font-size: 15px;
 }
 
 p {
-    color: white;
+  color: white;
 }
 
 button {
-    background-color:rgb(255, 221, 70);
-    color: rgb(159, 198, 41);
-    border: none;
-    padding: 10px;
+  background-color: rgb(255, 221, 70);
+  color: rgb(159, 198, 41);
+  border: none;
+  padding: 10px;
 }
 
 a {
-    color: rgb(159, 198, 41);
+  color: rgb(159, 198, 41);
+}
+
+.question {
+  background: rgb(255, 246, 199);
+  width: 600px;
+  height: auto;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  margin: 20px;
+  justify-items: center;
+  display: block;
+  padding: 20px;
+}
+
+.answer {
+  margin: 10px;
+}
+
+.question-text {
+  display: block;
+  color: rgb(141, 195, 48);
 }
