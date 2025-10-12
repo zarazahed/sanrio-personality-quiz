@@ -32,6 +32,7 @@ submitButton.addEventListener("click", function () {
     hellokitty: 0,
     pompourin: 0,
     kuromi: 0,
+    cinnamoroll: 0,
   };
 
   questions.forEach((question) => {
