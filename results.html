@@ -47,6 +47,19 @@
         document.getElementById("winner").textContent = "no results";
         document.getElementById("description").textContent = "";
       }
+
+      document.addEventListener(
+        "click",
+        () => {
+          const audio = document.getElementById("msong");
+          if (audio && audio.paused) {
+            audio
+              .play()
+              .catch((err) => console.log("Audio play blocked:", err));
+          }
+        },
+        { once: true }
+      );
     </script>
   </body>
 </html>

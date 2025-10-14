@@ -72,5 +72,3 @@ document.addEventListener(
   },
   { once: true }
 );
-
-console.log("main.js loaded");
