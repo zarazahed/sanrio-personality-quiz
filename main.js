@@ -1,8 +1,11 @@
 const buttons = document.querySelectorAll(".incrementBtn");
 const submitButton = document.getElementById("submit");
-const questions = document.querySelectorAll(".question");
 
-submitButton.disabled = true;
+if (submitButton) {
+  submitButton.disabled = true;
+}
+
+const questions = document.querySelectorAll(".question");
 
 function checkAllAnswered() {
   let allAnswered = true;
@@ -10,7 +13,9 @@ function checkAllAnswered() {
     const selected = question.querySelector(".incrementBtn.selected");
     if (!selected) allAnswered = false;
   });
-  submitButton.disabled = !allAnswered;
+  if (submitButton) {
+    submitButton.disabled = !allAnswered;
+  }
 }
 
 buttons.forEach((button) => {
@@ -24,28 +29,29 @@ buttons.forEach((button) => {
     checkAllAnswered();
   });
 });
+if (submitButton) {
+  submitButton.addEventListener("click", function () {
+    const scores = {
+      melody: 0,
+      tuxedosam: 0,
+      hellokitty: 0,
+      pompourin: 0,
+      kuromi: 0,
+      cinnamoroll: 0,
+    };
 
-submitButton.addEventListener("click", function () {
-  const scores = {
-    melody: 0,
-    tuxedosam: 0,
-    hellokitty: 0,
-    pompourin: 0,
-    kuromi: 0,
-    cinnamoroll: 0,
-  };
+    questions.forEach((question) => {
+      const selected = question.querySelector(".incrementBtn.selected");
+      if (selected) {
+        const character = selected.dataset.character;
+        scores[character]++;
+      }
+    });
 
-  questions.forEach((question) => {
-    const selected = question.querySelector(".incrementBtn.selected");
-    if (selected) {
-      const character = selected.dataset.character;
-      scores[character]++;
-    }
+    localStorage.setItem("scores", JSON.stringify(scores));
+    window.location.href = "results.html";
   });
-
-  localStorage.setItem("scores", JSON.stringify(scores));
-  window.location.href = "results.html";
-});
+}
 
 const clickSound = new Audio("click.wav");
 
@@ -55,3 +61,16 @@ document.querySelectorAll("button").forEach((btn) => {
     clickSound.play();
   });
 });
+
+document.addEventListener(
+  "click",
+  () => {
+    const audio = document.getElementById("msong");
+    if (audio && audio.paused) {
+      audio.play().catch((err) => console.log("Audio play blocked:", err));
+    }
+  },
+  { once: true }
+);
+
+console.log("main.js loaded");

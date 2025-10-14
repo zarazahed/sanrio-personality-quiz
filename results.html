@@ -14,9 +14,16 @@
     <link rel="icon" type="image/png" href="img7.png" />
   </head>
   <body>
-    <h1>your character: <span id="winner"></span> :3</h1>
-    <p id="description"></p>
-
+    <audio id="msong" loop>
+      <source src="msong.mp3" type="audio/mpeg" />
+    </audio>
+    <div class="thing">
+      <h1 class="text">your character: <span id="winner"></span> :3 ⊹ ࣪ ˖</h1>
+      <h6 id="description"></h6>
+      <button style="padding: 10px">
+        <a href="quiz.html">click to play again!</a>
+      </button>
+    </div>
     <script>
       const scores = JSON.parse(localStorage.getItem("scores"));
       if (scores) {
@@ -31,6 +38,7 @@
           tuxedosam: "he's a silly lil guy",
           pompourin: "sleepy smol shoe collector",
           melody: "cutest bunny oat",
+          cinnamoroll: "the most cinnamon roll to ever cinnamon roll",
         };
 
         document.getElementById("description").textContent =
