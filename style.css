@@ -76,7 +76,8 @@ img {
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
-  margin-bottom: -20px;
+  margin-bottom: -40px;
+  margin-left: 10px;
 }
 
 .incrementBtn.selected {

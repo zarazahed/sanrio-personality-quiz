@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sanrio Personality Quiz</title>
+    <title>sanrio trivia quiz results</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,37 +18,23 @@
       <source src="msong.mp3" type="audio/mpeg" />
     </audio>
     <div class="thing">
-      <h1 class="text">your character: <span id="winner"></span> :3 ⊹ ࣪ ˖</h1>
-      <h6 id="description"></h6>
-      <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
-        <a href="quiz.html">click to play again</a>
+      <h1>𐙚₊˚ your score is...  ⊹ ₊ ݁.</h1>
+    <h1 id="score"></h2>
+        <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
+        <a href="quiz2.html">click to play again</a>
       </button>
       <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
         <a href="index1.html">click to go home</a>
       </button>
     </div>
-    <script>
-      const scores = JSON.parse(localStorage.getItem("scores"));
-      if (scores) {
-        const winner = Object.keys(scores).reduce((a, b) =>
-          scores[a] > scores[b] ? a : b
-        );
-        document.getElementById("winner").textContent = winner;
+<script>
+      const score = localStorage.getItem("quizScore");
+      const totalQuestions = 9; // change if you add/remove questions
 
-        const descriptions = {
-          kuromi: "our favourite diva",
-          hellokitty: "the goat",
-          tuxedosam: "he's a silly lil guy",
-          pompourin: "sleepy smol shoe collector",
-          melody: "cutest bunny oat",
-          cinnamoroll: "the most cinnamon roll to ever cinnamon roll",
-        };
-
-        document.getElementById("description").textContent =
-          descriptions[winner];
+      if (score !== null) {
+        document.getElementById("score").textContent = `${score} / ${totalQuestions}`;
       } else {
-        document.getElementById("winner").textContent = "no results";
-        document.getElementById("description").textContent = "";
+        document.getElementById("score").textContent = "No results found :(";
       }
 
       document.addEventListener(
@@ -63,6 +49,7 @@
         },
         { once: true }
       );
+    </script>
     </script>
   </body>
 </html>

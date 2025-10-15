@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sanrio quizzes</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img7.png" />
+  </head>
+  <body>
+    <audio id="msong" loop>
+      <source src="msong.mp3" type="audio/mpeg" />
+    </audio>
+    <div class="thing">
+      <h1 class="text">welcome to the sanrio quiz site! ‧₊ ᵎᵎ ⋅ ˚✮</h1>
+      <img src="hellokitty.png" />
+      <h6>website by me, zara zahed ✩ °｡ ⋆</h6>
+      <p>do you want to try playing sanrio games? this is the site for you!!</p>
+      <p>
+        try out the personality quiz, the trivia quiz, or the guess the
+        character quiz!
+      </p>
+      <br />
+      <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
+        <a href="quiz.html">personality quiz</a>
+      </button>
+      <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
+        <a href="quiz2.html">trivia quiz</a>
+      </button>
+      <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
+        <a href="quiz3.html">guess the character quiz</a>
+      </button>
+    </div>
+    <script>
+      const buttons = document.querySelectorAll(".incrementBtn");
+      const submitButton = document.getElementById("submit");
+
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+
+      const questions = document.querySelectorAll(".question");
+
+      function checkAllAnswered() {
+        let allAnswered = true;
+        questions.forEach((question) => {
+          const selected = question.querySelector(".incrementBtn.selected");
+          if (!selected) allAnswered = false;
+        });
+        if (submitButton) {
+          submitButton.disabled = !allAnswered;
+        }
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const questionDiv = button.closest(".question");
+          questionDiv
+            .querySelectorAll(".incrementBtn")
+            .forEach((btn) => btn.classList.remove("selected"));
+
+          button.classList.add("selected");
+          checkAllAnswered();
+        });
+      });
+      if (submitButton) {
+        submitButton.addEventListener("click", function () {
+          const scores = {
+            melody: 0,
+            tuxedosam: 0,
+            hellokitty: 0,
+            pompourin: 0,
+            kuromi: 0,
+            cinnamoroll: 0,
+          };
+
+          questions.forEach((question) => {
+            const selected = question.querySelector(".incrementBtn.selected");
+            if (selected) {
+              const character = selected.dataset.character;
+              scores[character]++;
+            }
+          });
+
+          localStorage.setItem("scores", JSON.stringify(scores));
+          window.location.href = "results.html";
+        });
+      }
+
+      const clickSound = new Audio("click.wav");
+
+      document.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          clickSound.currentTime = 0;
+          clickSound.play();
+        });
+      });
+
+      document.addEventListener(
+        "click",
+        () => {
+          const audio = document.getElementById("msong");
+          if (audio && audio.paused) {
+            audio
+              .play()
+              .catch((err) => console.log("Audio play blocked:", err));
+          }
+        },
+        { once: true }
+      );
+    </script>
+  </body>
+</html>
