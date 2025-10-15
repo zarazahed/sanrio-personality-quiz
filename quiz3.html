@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sanrio guess the character quiz</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="img7.png" />
+  </head>
+  <body>
+    <audio id="msong" loop>
+      <source src="msong.mp3" type="audio/mpeg" />
+    </audio>
+    <div class="question">
+      <img
+        style="display: block; width: 200px; height: auto; margin: 10px auto"
+        src="hellokitty.jpg"
+      />
+      <br />
+      <button class="incrementBtn" data-character="wrong">my melody</button>
+      <button class="incrementBtn" data-character="wrong">
+        the strawberry king
+      </button>
+      <button class="incrementBtn" data-character="right">hello kitty</button>
+      <button class="incrementBtn" data-character="wrong">cinnamoroll</button>
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">
+        which character is friends with muffin, bagel, and scone?
+      </p>
+      <button class="incrementBtn" data-character="wrong">charmmy kitty</button>
+      <button class="incrementBtn" data-character="wrong">chococat</button>
+      <button class="incrementBtn" data-character="right">pompourin</button>
+      <button class="incrementBtn" data-character="wrong">badtz-maru</button>
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">
+        which character was debuted the most recently?
+      </p>
+      <button class="incrementBtn" data-character="right">u sa ha na</button>
+      <button class="incrementBtn" data-character="wrong">tuxedosam</button>
+      <button class="incrementBtn" data-character="wrong">hello kitty</button>
+      <button class="incrementBtn" data-character="wrong">
+        little twin stars
+      </button>
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">which one is a sanrio character?</p>
+      <button class="incrementBtn" data-character="wrong">jellycat</button>
+      <button class="incrementBtn" data-character="right">kawau</button>
+      <button class="incrementBtn" data-character="wrong">pusheen</button>
+      <button class="incrementBtn" data-character="wrong">miffy</button>
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">when was hello kitty debuted?</p>
+
+      <button class="incrementBtn" data-character="right">1974</button>
+      <button class="incrementBtn" data-character="wrong">1967</button>
+      <button class="incrementBtn" data-character="wrong">6767</button>
+      <button class="incrementBtn" data-character="wrong">1923</button>
+
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">which country does sanrio originate from?</p>
+      <button class="incrementBtn" data-character="wrong">china</button>
+      <button class="incrementBtn" data-character="wrong">korea</button>
+      <button class="incrementBtn" data-character="wrong">england</button>
+      <button class="incrementBtn" data-character="right">japan</button>
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">which character is known to steal shoes?</p>
+      <button class="incrementBtn" data-character="wrong">chococat</button>
+      <button class="incrementBtn" data-character="wrong">keroppi</button>
+      <button class="incrementBtn" data-character="right">pompourin</button>
+      <button class="incrementBtn" data-character="wrong">cinnamoroll</button>
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">
+        which character does not have their own movie?
+      </p>
+      <button class="incrementBtn" data-character="wrong">my melody</button>
+      <button class="incrementBtn" data-character="wrong">hello kitty</button>
+      <button class="incrementBtn" data-character="right">kirimichan</button>
+      <button class="incrementBtn" data-character="wrong">cinnamoroll</button>
+      <br />
+    </div>
+
+    <div class="question">
+      <p class="question-text">what species is hana-maru?</p>
+      <button class="incrementBtn" data-character="wrong">otter</button>
+      <button class="incrementBtn" data-character="right">seal</button>
+      <button class="incrementBtn" data-character="wrong">sea lion</button>
+      <button class="incrementBtn" data-character="wrong">shark</button>
+      <br />
+    </div>
+
+    <button id="submit">check my answers</button>
+
+    <script>
+      const buttons = document.querySelectorAll(".incrementBtn");
+      const submitButton = document.getElementById("submit");
+      const questions = document.querySelectorAll(".question");
+
+      submitButton.disabled = true;
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const questionDiv = button.closest(".question");
+          questionDiv.querySelectorAll(".incrementBtn").forEach((btn) => {
+            btn.classList.remove("selected");
+          });
+          button.classList.add("selected");
+          const allAnswered = Array.from(questions).every((q) =>
+            q.querySelector(".incrementBtn.selected")
+          );
+          submitButton.disabled = !allAnswered;
+        });
+      });
+
+      submitButton.addEventListener("click", () => {
+        let correct = 0;
+
+        questions.forEach((question) => {
+          const selected = question.querySelector(".incrementBtn.selected");
+          if (selected && selected.dataset.character === "right") {
+            correct++;
+          }
+        });
+
+        localStorage.setItem("quizScore", correct);
+        window.location.href = "results3.html";
+      });
+
+      document.addEventListener(
+        "click",
+        () => {
+          const audio = document.getElementById("msong");
+          if (audio && audio.paused) {
+            audio
+              .play()
+              .catch((err) => console.log("Audio play blocked:", err));
+          }
+        },
+        { once: true }
+      );
+    </script>
+  </body>
+</html>
