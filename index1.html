@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sanrio quizzes</title>
-    <link href="style.css" rel="stylesheet" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,6 +12,78 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="img7.png" />
+    <style>
+      * {
+        font-family: "Pixelify Sans";
+        text-align: center;
+        cursor: url("cursor.cur"), auto;
+      }
+
+      body {
+        margin: 50px;
+        background: rgb(135, 219, 198);
+        background-image: url("pixels.jpg");
+        background-size: 70px;
+        background-repeat: repeat;
+        background-blend-mode: soft-light;
+      }
+
+      h1 {
+        color: rgb(210, 255, 196);
+        font-size: 50px;
+      }
+
+      h6 {
+        color: rgb(204, 243, 192);
+        font-size: 15px;
+      }
+
+      p {
+        color: white;
+      }
+
+      button {
+        background-color: rgb(210, 255, 196);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+      }
+
+      a {
+        color: rgb(135, 219, 198);
+      }
+
+      .text {
+        display: inline-block;
+        margin-right: 8px;
+        vertical-align: middle;
+        margin-bottom: -20px;
+      }
+
+      img {
+        width: 80px;
+        height: auto;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+        margin-bottom: -40px;
+        margin-left: 10px;
+      }
+
+      button:hover {
+        cursor: url("cursor.cur"), auto;
+      }
+
+      .thing {
+        margin-top: 200px;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
     <audio id="msong" loop>
@@ -27,14 +99,15 @@
         character quiz!
       </p>
       <br />
-      <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
-        <a href="quiz.html">personality quiz</a>
-      </button>
+
       <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
         <a href="quiz2.html">trivia quiz</a>
       </button>
       <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
         <a href="quiz3.html">guess the character quiz</a>
+      </button>
+      <button style="padding: 10px; margin-right: 10x; margin-left: 10px">
+        <a href="quiz.html">personality quiz</a>
       </button>
     </div>
     <script>
