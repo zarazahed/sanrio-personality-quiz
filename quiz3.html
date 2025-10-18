@@ -93,6 +93,34 @@
         vertical-align: middle;
         margin-bottom: -40px;
         margin-left: 10px;
+        transition: transform 0.3s ease-in-out;
+        transform-origin: center center;
+      }
+
+      img:hover {
+        transform: scale(1.1);
+        animation: wiggle-scale 1s ease-in-out infinite;
+        animation-delay: 0.3s;
+      }
+
+      img:not(:hover) {
+        animation: none;
+      }
+
+      @keyframes wiggle-scale {
+        0%,
+        100% {
+          transform: scale(1.2) rotate(0deg);
+        }
+        25% {
+          transform: scale(1.2) rotate(5deg);
+        }
+        50% {
+          transform: scale(1.2) rotate(-5deg);
+        }
+        75% {
+          transform: scale(1.2) rotate(5deg);
+        }
       }
 
       .incrementBtn.selected {
